@@ -17,12 +17,22 @@ class Post(models.Model):
     update = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=2,choices=Status.choices, default=Status.DRAFT)
 
-    # class Meta:
-    #     ordering = ['-publish']
-    #     indexes = [
-    #            models.Index(fields =['-publish']),
 
-    #               ]
+    # class PublishedManager(models.Manager):
+    #     def get_queryset(self):
+    #         return super().get_queryset().filter(status=Post.Status.PUBLISHED)
+                                          
+    # class Post(models.Model):
+      # model fields
+        # ...
+        # objects = models.Manager() # The default manager.
+        # published = PublishedManager() # Our custom manager.
+
+
+    class Meta:
+        ordering = ['-publish']
+        indexes = [models.Index(fields=['-publish']), ]
+                                      
         
     def __str__(self) -> str:
         return self.title

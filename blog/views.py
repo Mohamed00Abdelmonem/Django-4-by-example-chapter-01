@@ -13,7 +13,6 @@ def post_detail(request, id):
     try:
         post = Post.objects.get(id=id)
     except Post.DoesNotExist:
-        raise Http404("No Post found.")
+        raise Http404("No Post found Mohamed.")
     return render(request,'blog/post/detail.html',{'post': post})
  
-    
